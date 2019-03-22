@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Tr = (props)=>{
+const Tr = (props) => {
     const {thumbnails, title, description, filename} = props.pic;
-    return {
+    return (
         <tr>
             <td>
                 <img src={thumbnails.w160} alt={title}/>
@@ -16,7 +16,7 @@ const Tr = (props)=>{
                 <a href={filename}>View</a>
             </td>
         </tr>
-    };
+    )
 };
 
 Tr.propTypes = {
