@@ -1,9 +1,9 @@
 import React from 'react';
-import Tr from './tr';
 import PropTypes from 'prop-types';
+import Tr from './tr';
 
 const Table = (props) => {
-    const rows = props.picarray.map((item, i) => {
+    const rows = props.picArray.map((item, i) => {
         return <Tr key={i} pic={item}/>;
     });
     return (
@@ -16,7 +16,7 @@ const Table = (props) => {
 };
 
 Table.propTypes = {
-    picarray: PropTypes.array,
+    picArray: PropTypes.array,
 };
 
 export default Table;
