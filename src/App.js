@@ -1,35 +1,35 @@
 import React, {Component} from 'react';
-import Table from './components/table';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {getAllMedia} from './utils/MediaAPI';
+import Nav from './components/Nav';
+import Home from './views/Home';
+import Profile from './views/Profile';
+import Single from './views/Single';
 
 class App extends Component {
-
-    apiUrl = 'http://media.mw.metropolia.fi/wbma/media/';
 
     state = {
         picArray: [],
     };
 
     componentDidMount() {
-        fetch(this.apiUrl).then(response => {
-            return response.json();
-        }).then(json => {
-            console.log(json);
-            return Promise.all(json.map(pic => {
-                return fetch(this.apiUrl + pic.file_id).then(response => {
-                    return response.json();
-                });
-            })).then(pics => {
-                console.log(pics);
-                this.setState({picArray: pics});
-            });
+        getAllMedia().then(pics => {
+            this.setState({picArray: pics});
         });
     }
 
     render() {
         return (
-            <div className="container">
-                <Table picArray={this.state.picArray}/>
-            </div>
+            <Router>
+                <div className="container">
+                    <Nav/>
+                    <Route exact path="/" render={(props) => (
+                        <Home {...props} picArray={this.state.picArray}/>
+                    )}/>
+                    <Route path="/profile" component={Profile}/>
+                    <Route path="/single" component={Single}/>
+                </div>
+            </Router>
         );
     }
 }
