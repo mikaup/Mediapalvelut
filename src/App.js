@@ -17,7 +17,7 @@ class App extends Component {
             })
             .then( (result) => {
                 console.log(result);
-                this.setState()
+                this.setState({picArray: result});
             });
     }
 
