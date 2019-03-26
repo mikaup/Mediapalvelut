@@ -1,4 +1,4 @@
-[http-b tehtävä] (https://users.metropolia.fi/~mikaup/http-b%20build/)
+[http-b tehtävä] (http://users.metropolia.fi/~mikaup/http-b%20build/)
 
 
 
