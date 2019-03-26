@@ -27,7 +27,7 @@ class App extends Component {
                         <Home {...props} picArray={this.state.picArray}/>
                     )}/>
                     <Route path="/profile" component={Profile}/>
-                    <Route path="/single" component={Single}/>
+                    <Route path="/single/:id" component={Single}/>
                 </div>
             </Router>
         );

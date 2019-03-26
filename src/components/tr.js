@@ -15,7 +15,7 @@ const Img = (props) => {
 };
 
 const Tr = (props) => {
-    const {title, description} = props.pic;
+    const {title, description,file_id} = props.pic;
     return (
         <tr>
             <td>
@@ -26,7 +26,7 @@ const Tr = (props) => {
                 <p>{description}</p>
             </td>
             <td>
-                <Link to="/single">View</Link>
+                <Link to={'/single/'+file_id}>View</Link>
             </td>
         </tr>
     );
