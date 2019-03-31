@@ -1,4 +1,4 @@
-[http-a tehtävä] (https://users.metropolia.fi/~mikaup/http-b%20Build/)
+[http-a tehtävä] (http://users.metropolia.fi/~mikaup/http-b%20Build/)
 
 
 (tehtävä päivitetty tehtävästä http-b)
