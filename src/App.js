@@ -7,6 +7,7 @@ import Nav from './components/Nav';
 import Login from './views/Login';
 import Profile from './views/Profile';
 import Logout from './views/Logout';
+import {Grid} from '@material-ui/core';
 
 class App extends Component {
 
@@ -33,8 +34,11 @@ class App extends Component {
     render() {
         return (
             <Router basename='/~mikaup/'>
-                <div className='container'>
+                <Grid container>
+                    <Grid item md={2} xs={12}>
                     <Nav checkLogin={this.checkLogin}/>
+                    </Grid>
+                    <Grid item md={10} xs={12}>
                     <Route  path="/home" render={(props) => (
                         <Front {...props} picArray={this.state.picArray}/>
                     )}/>
@@ -52,7 +56,8 @@ class App extends Component {
                     <Route path="/logout" render={(props) => (
                         <Logout {...props} setUser={this.setUser}/>
                     )}/>
-                </div>
+                    </Grid>
+                </Grid>
             </Router>
         );
     }
