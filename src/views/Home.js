@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from "../components/table";
+import Table from "../components/Table";
 
 const Home = (props) => {
     return (

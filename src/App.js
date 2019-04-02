@@ -11,56 +11,56 @@ import {Grid} from '@material-ui/core';
 
 class App extends Component {
 
-    state = {
-        picArray: [],
-        user: null,
-    };
+  state = {
+    picArray: [],
+    user: null,
+  };
 
-    setUser = (user) => {
-        this.setState({user});
-    };
+  setUser = (user) => {
+    this.setState({user});
+  };
 
-    checkLogin = () => {
-        return this.state.user !== null;
-    };
+  checkLogin = () => {
+    return this.state.user !== null;
+  };
 
-    componentDidMount() {
-        getAllMedia().then((pics) => {
-            console.log(pics);
-            this.setState({picArray: pics});
-        });
-    }
+  componentDidMount() {
+    getAllMedia().then((pics) => {
+      console.log(pics);
+      this.setState({picArray: pics});
+    });
+  }
 
-    render() {
-        return (
-            <Router basename='/~mikaup/'>
-                <Grid container>
-                    <Grid item md={2} xs={12}>
-                    <Nav checkLogin={this.checkLogin}/>
-                    </Grid>
-                    <Grid item md={10} xs={12}>
-                    <Route  path="/home" render={(props) => (
-                        <Front {...props} picArray={this.state.picArray}/>
-                    )}/>
+  render() {
+    return (
+        <Router basename='/~mikaup/'>
+          <Grid container>
+            <Grid item md={2} xs={12}>
+              <Nav checkLogin={this.checkLogin}/>
+            </Grid>
+            <Grid item md={10} xs={12}>
+              <Route path="/home" render={(props) => (
+                  <Front {...props} picArray={this.state.picArray}/>
+              )}/>
 
-                    <Route path="/single/:id" component={Single}/>
+              <Route path="/single/:id" component={Single}/>
 
-                    <Route path="/profile" render={(props) => (
-                        <Profile {...props} user={this.state.user}/>
-                    )}/>
+              <Route path="/profile" render={(props) => (
+                  <Profile {...props} user={this.state.user}/>
+              )}/>
 
-                    <Route exact path="/" render={(props) => (
-                        <Login {...props} setUser={this.setUser}/>
-                    )}/>
+              <Route exact path="/" render={(props) => (
+                  <Login {...props} setUser={this.setUser}/>
+              )}/>
 
-                    <Route path="/logout" render={(props) => (
-                        <Logout {...props} setUser={this.setUser}/>
-                    )}/>
-                    </Grid>
-                </Grid>
-            </Router>
-        );
-    }
+              <Route path="/logout" render={(props) => (
+                  <Logout {...props} setUser={this.setUser}/>
+              )}/>
+            </Grid>
+          </Grid>
+        </Router>
+    );
+  }
 }
 
 export default App;
