@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {getAllMedia} from './util/MediaAPI';
+import {filterPic, getAllMedia} from './util/MediaAPI';
 import Front from './views/Front';
 import Single from './views/Single';
 import Nav from './components/Nav';
@@ -18,6 +18,17 @@ class App extends Component {
 
   setUser = (user) => {
     this.setState({user});
+    filterPic(user.user_id).then((kuvat) => {
+      console.log(kuvat);
+      this.setState((prevState) => {
+        return {
+          user: {
+            ...prevState.user,
+            picture: kuvat[0],
+          },
+        };
+      });
+    })
   };
 
   checkLogin = () => {
