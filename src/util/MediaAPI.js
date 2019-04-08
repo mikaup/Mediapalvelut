@@ -59,22 +59,16 @@ const getUser = (token) => {
   });
 };
 
-const getProfilepic = () => {
-  return fetch(apiUrl + 'tags/profile').then(response => {
+const checkUser = (username) => {
+  return fetch(apiUrl + 'users/username/' + username).then(response => {
     return response.json();
   });
 };
 
-const filterPic = (user_id) => {
-  return getProfilepic().then((pics) => {
-    return pics.filter(pic => {
-      let kuva = null;
-      if (pic.user_id === user_id) {
-        kuva = pic;
-      }
-      return kuva;
-    });
+const getFilesByTag = (tag) => {
+  return fetch(apiUrl + 'tags/' + tag).then(response => {
+    return response.json();
   });
 };
 
-export {getAllMedia, getSingleMedia, login, register, getUser, filterPic};
+export {getAllMedia, getSingleMedia, login, register, getUser, getFilesByTag, checkUser};

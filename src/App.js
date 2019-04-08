@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {filterPic, getAllMedia} from './util/MediaAPI';
+import {getAllMedia, getFilesByTag} from './util/MediaAPI';
 import Front from './views/Front';
 import Single from './views/Single';
 import Nav from './components/Nav';
 import Login from './views/Login';
 import Profile from './views/Profile';
 import Logout from './views/Logout';
-import {Grid} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 class App extends Component {
 
@@ -17,18 +17,29 @@ class App extends Component {
   };
 
   setUser = (user) => {
-    this.setState({user});
-    filterPic(user.user_id).then((kuvat) => {
-      console.log(kuvat);
+    // hae profiilikuva ja liitä se user-objektiin
+    getFilesByTag('profile').then((files) => {
+      const profilePic = files.filter((file) => {
+        let outputFile = null;
+        if (file.user_id === this.state.user.user_id) {
+          outputFile = file;
+        }
+        return outputFile;
+      });
       this.setState((prevState) => {
         return {
           user: {
             ...prevState.user,
-            picture: kuvat[0],
+            profilePic: profilePic[0],
           },
         };
       });
-    })
+    });
+    this.setState({user});
+  };
+
+  setUserLogout = (user) => {
+    this.setState({user});
   };
 
   checkLogin = () => {
@@ -40,16 +51,17 @@ class App extends Component {
       console.log(pics);
       this.setState({picArray: pics});
     });
+
   }
 
   render() {
     return (
         <Router basename='/~mikaup/'>
           <Grid container>
-            <Grid item md={2} xs={12}>
+            <Grid item sm={2}>
               <Nav checkLogin={this.checkLogin}/>
             </Grid>
-            <Grid item md={10} xs={12}>
+            <Grid item sm={10}>
               <Route path="/home" render={(props) => (
                   <Front {...props} picArray={this.state.picArray}/>
               )}/>
@@ -65,7 +77,7 @@ class App extends Component {
               )}/>
 
               <Route path="/logout" render={(props) => (
-                  <Logout {...props} setUser={this.setUser}/>
+                  <Logout {...props} setUserLogout={this.setUserLogout}/>
               )}/>
             </Grid>
           </Grid>

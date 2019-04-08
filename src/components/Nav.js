@@ -1,44 +1,41 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {List, ListItem,ListItemIcon,ListItemText} from '@material-ui/core';
-import {Home,AccountBox,Input,Launch} from '@material-ui/icons';
+import {List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {Home, AccountBox, ExitToApp} from '@material-ui/icons';
 
 const Nav = (props) => {
     return (
         <nav>
             <List>
-                <ListItem button component={Link} to='/home'>
+                <ListItem button component={Link} to="/home">
                     <ListItemIcon>
                         <Home/>
                     </ListItemIcon>
-                <ListItemText primary='Home'/>
+                    <ListItemText primary="Home"/>
                 </ListItem>
                 {props.checkLogin() &&
                 <React.Fragment>
-                    <ListItem button component={Link} to='/profile'>
+                    <ListItem button component={Link} to="/profile">
                         <ListItemIcon>
                             <AccountBox/>
                         </ListItemIcon>
-                        <ListItemText primary='Profile'/>
-                        {/*<Link to='/profile'>Profile</Link>*/}
+                        <ListItemText primary="Profile"/>
                     </ListItem>
-                    <ListItem button component={Link} to='/logout'>
+                    <ListItem button component={Link} to="/logout">
                         <ListItemIcon>
-                            <Launch/>
+                            <ExitToApp/>
                         </ListItemIcon>
-                        <ListItemText primary='Logout'/>
-                        {/*<Link to='/logout'>Logout</Link>*/}
+                        <ListItemText primary="Logout"/>
                     </ListItem>
                 </React.Fragment>
                 }
                 {!props.checkLogin() &&
-                <ListItem button component={Link} to='/'>
+                <ListItem button component={Link} to="/">
                     <ListItemIcon>
-                        <Input/>
+                        <ExitToApp/>
                     </ListItemIcon>
-                    <ListItemText primary='Login'/>
-                    {/*<Link to='/'>Login</Link>*/}
+                    <ListItemText primary="Login"/>
                 </ListItem>
                 }
 
