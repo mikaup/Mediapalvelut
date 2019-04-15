@@ -20,7 +20,17 @@ const ImageGrid = (props) => {
         </GridListTile>
         {props.picArray.map(tile => (
             <GridListTile key={tile.file_id}>
-              <img src={mediaUrl + tile.thumbnails.w160} alt={tile.title}/>
+              {(tile.thumbnails !== undefined
+                  &&
+                  <img src={mediaUrl + tile.thumbnails.w160} alt={tile.title}/>)
+              ||
+              (tile.screenshot !== undefined
+                  &&
+                  <img src={mediaUrl + tile.screenshot} alt={tile.title}/>)
+              ||
+              <img src="http://placekitten.com/400/400" alt={tile.title}/>
+              }
+
               <GridListTileBar
                   title={tile.title}
                   actionIcon={
