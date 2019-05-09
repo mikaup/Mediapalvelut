@@ -1,7 +1,16 @@
+
+
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
+const handleFetchErrors = (response) => {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+};
+const tag = 'ECHO';
 const getAllMedia = () => {
-  return fetch(apiUrl + 'media/').then(response => {
+  return fetch(apiUrl + 'tags/' + tag).then(response => {
     return response.json();
   }).then(json => {
     console.log(json);
@@ -15,6 +24,8 @@ const getAllMedia = () => {
     });
   });
 };
+
+
 
 const getSingleMedia = (id) => {
   return fetch(apiUrl + 'media/' + id).then(response => {
@@ -65,10 +76,65 @@ const checkUser = (username) => {
   });
 };
 
-const getFilesByTag = (tag) => {
-  return fetch(apiUrl + 'tags/' + tag).then(response => {
+
+
+const upload = (data, token) => {
+  const options = {
+    method: 'POST',
+    body: data,
+    headers: {
+      'x-access-token': token,
+    },
+  };
+
+  return fetch(apiUrl + 'media', options).then(response => {
     return response.json();
   });
 };
 
-export {getAllMedia, getSingleMedia, login, register, getUser, getFilesByTag, checkUser};
+const modify = (id, data, token) => {
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json',
+      'x-access-token': token,
+    },
+  };
+
+  return fetch(apiUrl + 'media/' + id, options)
+  .then(handleFetchErrors)
+  .then(response => {
+    return response.json();
+  });
+};
+
+
+const sivunappi = () => {
+
+};
+
+const getDescription = (text) => {
+  const pattern = '\\[d\\]((.|[\\r\\n])*?)\\[\\/d\\]';
+  const re = new RegExp(pattern);
+  console.log(re.exec(text));
+  try {
+    return re.exec(text)[1];
+  } catch (e) {
+    return text;
+  }
+};
+
+export {
+  getAllMedia,
+  getSingleMedia,
+  login,
+  register,
+  getUser,
+  checkUser,
+  handleFetchErrors,
+  upload,
+  modify,
+  sivunappi,
+  getDescription,
+};

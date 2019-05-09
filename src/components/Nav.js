@@ -1,51 +1,34 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
-import {Home, AccountBox, ExitToApp, AddCircle} from '@material-ui/icons';
+import './Nav.css';
 
 const Nav = (props) => {
     return (
         <nav>
-            <List>
-                <ListItem button component={Link} to="/home">
-                    <ListItemIcon>
-                        <Home/>
-                    </ListItemIcon>
-                    <ListItemText primary="Home"/>
-                </ListItem>
+            <ul>
                 {props.checkLogin() &&
                 <React.Fragment>
-                    <ListItem button component={Link} to="/upload">
-                        <ListItemIcon>
-                            <AddCircle/>
-                        </ListItemIcon>
-                        <ListItemText primary="Upload"/>
-                    </ListItem>
-                    <ListItem button component={Link} to="/profile">
-                        <ListItemIcon>
-                            <AccountBox/>
-                        </ListItemIcon>
-                        <ListItemText primary="Profile"/>
-                    </ListItem>
-                    <ListItem button component={Link} to="/logout">
-                        <ListItemIcon>
-                            <ExitToApp/>
-                        </ListItemIcon>
-                        <ListItemText primary="Logout"/>
-                    </ListItem>
+                  <li>
+                    <Link to='/'><strong>Home</strong></Link>
+                  </li>
+                    <li>
+                      <Link to='/profile'><strong>Profile</strong></Link>
+                    </li>
+                    <li>
+                      <Link to='/logout'><strong>Logout</strong></Link>
+                    </li>
+
                 </React.Fragment>
                 }
                 {!props.checkLogin() &&
-                <ListItem button component={Link} to="/">
-                    <ListItemIcon>
-                        <ExitToApp/>
-                    </ListItemIcon>
-                    <ListItemText primary="Login"/>
-                </ListItem>
+
+                <li>
+                  <Link to="/home"><strong>Login</strong></Link>
+                  </li>
                 }
 
-            </List>
+            </ul>
         </nav>
     );
 };

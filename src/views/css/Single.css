@@ -1,0 +1,14 @@
+#backnappi {
+    background-color: rebeccapurple;
+    margin-left: 230px;
+     top: 65px;
+}
+#backnappi:hover{
+    background-color: #1ea2cc;
+}
+#description {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    margin-left: 20px;
+
+}

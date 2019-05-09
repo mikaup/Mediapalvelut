@@ -5,8 +5,10 @@ import {TextField, Button} from '@material-ui/core';
 import {Send} from '@material-ui/icons';
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import red from '@material-ui/core/colors/red';
-
+import './css/Login.css'
+import logo3 from './css/logo3.png'
 import {withStyles} from '@material-ui/core/styles';
+
 
 const styles = theme => ({
   container: {
@@ -62,7 +64,7 @@ class Login extends Component {
       if (response.user !== undefined) {
         this.props.setUser(response.user);
         localStorage.setItem('token', response.token);
-        this.props.history.push('/home');
+        this.props.history.push('/');
       } else {
         this.setState({message: response.message});
       }
@@ -126,10 +128,12 @@ class Login extends Component {
           <div>
             <Button color="primary" variant="contained"
                     onClick={this.toggleForm}>{(this.state.formToggler && `No account yet?
-              Register.`) || `Login`}</Button>
+              Register.`) || `Already have an account? Login!`}</Button>
+
           </div>
           {this.state.formToggler &&
           <React.Fragment>
+            <img src={logo3} alt="logo" className='logo3' />
             <h1>Login</h1>
             <form onSubmit={this.handleLoginSubmit}>
               <TextField fullWidth required name="username" id="username"
@@ -143,7 +147,7 @@ class Login extends Component {
                          onChange={this.handleInputChange}/>
               <Button className={classes.button} variant="contained"
                       color="primary" type="submit">
-                <Send/>&nbsp;Login
+                <Send/>&nbsp; Login
               </Button>
             </form>
           </React.Fragment>
