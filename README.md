@@ -1,7 +1,7 @@
 # mpjakk-example
 
 
-ECHO-audio jako palvelu(http://users.metropolia.fi/~mikaup/ECHO/)
+ECHO-audio jako palvelu(http://users.metropolia.fi/~mikaup/ECHO/)  Jostain syystä palvelu näyttää ihan erilaiselta joillakin koneilla, tai ohjelma ei saa haettua tarvittavaa sisältöä ruudulle.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
